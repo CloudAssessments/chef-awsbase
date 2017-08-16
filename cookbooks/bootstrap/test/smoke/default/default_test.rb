@@ -20,18 +20,6 @@ describe file('/etc/ssh/sshd_config') do
   its(:content) { should contain 'PasswordAuthentication yes' }
 end
 
-describe file('/opt/scripts/fix-reorts.sh') do
-  it { should exist }
-end
-
-describe file('/home/cloud_user/irs-records.txt') do
-  it { should exist }
-end
-
-describe file('/home/cloud_user/private-records.txt') do
-  it { should exist }
-end
-
-describe file('/home/cloud_user/reboot.bad') do
+describe file('/usr/bin/aws') do
   it { should exist }
 end
