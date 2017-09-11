@@ -25,8 +25,19 @@ if node['platform_family'] == "debian"
   group 'cloud_user' do
     members 'cloud_user'
   end
+
+  execute 'add cloud_user to sudoers' do
+    command '/bin/echo \'cloud_user ALL=(ALL:ALL) NOPASSWD: ALL\' >> /etc/sudoers'
+  end
+
   openssh_server '/etc/ssh/sshd_config' do
     PasswordAuthentication yes
+  end
+end
+
+if node['platform_family'] == "rhel"
+  execute 'add cloud_user to sudoers' do
+    command '/bin/echo \'cloud_user  ALL=(ALL)  NOPASSWD: ALL\' >> /etc/sudoers'
   end
 end
 
